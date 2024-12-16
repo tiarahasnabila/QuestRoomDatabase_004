@@ -1,5 +1,4 @@
 package com.example.pertemuan9.ui.theme.viewmodel
-
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -10,19 +9,20 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.pertemuan9.data.entity.Mahasiswa
 import com.example.pertemuan9.repository.RepositoryMhs
 import com.example.pertemuan9.ui.theme.navigation.AlamatNavigasi
+import com.example.pertemuan9.ui.theme.navigation.DestinasiUpdate
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
-class UpdateMhsViewModel(
+class UpdateMhsViewModel (
     savedStateHandle: SavedStateHandle,
     private val repositoryMhs: RepositoryMhs
-): ViewModel() {
+) : ViewModel() {
 
     var updateUIState by mutableStateOf(MhsUIState())
         private set
 
-    private val _nim: String = checkNotNull(savedStateHandle[AlamatNavigasi.DestinasiUpdate.NIM])
+    private val _nim: String = checkNotNull(savedStateHandle[DestinasiUpdate.NIM])
 
     init {
         viewModelScope.launch {
@@ -66,10 +66,10 @@ class UpdateMhsViewModel(
                         mahasiswaEvent = MahasiswaEvent(),
                         isEntryValid = FormErrorState()
                     )
-                    println("cnackBarMessage diatur: ${updateUIState.snackBarMessage}")
+                    println("snackBarMessage diatur : ${updateUIState.snackBarMessage}")
                 } catch (e: Exception) {
                     updateUIState = updateUIState.copy(
-                        snackBarMessage = "Data gsgsl diupdate"
+                        snackBarMessage = "Data gagal diupdate"
                     )
                 }
             }
