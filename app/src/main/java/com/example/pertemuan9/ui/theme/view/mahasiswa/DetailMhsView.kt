@@ -55,7 +55,6 @@ fun DetailMhsView(
                 judul = "Detail Mahasiswa",
                 showBackButton = true,
                 onBack = onBack,
-                modifier = modifier
             )
         },
         floatingActionButton = {
@@ -209,6 +208,27 @@ fun ComponentDetailMhs(
             color = Color.Black
         )
     }
+}
+
+@Composable
+private fun DeleteConfirmationDialog(
+    onDeleteConfirm: () -> Unit, onDeleteCancel: () -> Unit, modifier: Modifier = Modifier
+) {
+    AlertDialog(onDismissRequest = { /* Do nothing */ },
+        title = { Text("Delete Data") },
+        text = { Text("Apakah anda yakin ingin menghapus data?") },
+        modifier = modifier,
+        dismissButton = {
+            TextButton(onClick = onDeleteCancel) {
+                Text(text = "Cancel")
+            }
+        },
+        confirmButton = {
+            TextButton(onClick = onDeleteConfirm) {
+                Text(text = "Yes")
+            }
+        }
+    )
 }
 
 
