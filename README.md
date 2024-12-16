@@ -7,12 +7,16 @@ Halaman Home
 Halaman Tambah 
 ![SSawal](https://github.com/user-attachments/assets/fc014033-462c-4c1e-af66-3d74632a2a37)
 
+Halaman Tambah
 ![TambahMahasiswa](https://github.com/user-attachments/assets/81d71dfe-5477-4c84-800d-f382cc1f9cf7)
+
+Detail Mahasiswa
 ![SSdetail](https://github.com/user-attachments/assets/d3933d47-f647-434f-88c8-7ffda7bb2367)
 
-
+Halama saat edit
 ![SSsetelahedit](https://github.com/user-attachments/assets/99929efc-bd10-4281-b85a-20b445017f73)
-Tampilan
+
+Tampilan validasi
 ![ssvalidasi](https://github.com/user-attachments/assets/cbef5478-ae60-4759-8d93-6758e592b88a)
 
 Database
