@@ -85,3 +85,70 @@ fun DetailMhsView(
     }
 }
 
+@Composable
+fun BodyDetailMhs(
+    modifier: Modifier = Modifier,
+    detailUiState: DetailUiState = DetailUiState(),
+    onDeleteClick: () -> Unit = { }
+) {
+    var deleteConfirmationRequired by rememberSaveable { mutableStateOf(false) }
+    //Log.d("BodyDetailMhs", "Detail UI State: $detailUiState")
+    when {
+        detailUiState.isLoading -> {
+            Box(
+                modifier = modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                CircularProgressIndicator() // Tampilkan Loading
+            }
+        }
+
+        detailUiState.isUiEventNotEmpty -> {
+            Column (
+                modifier = modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            ) {
+                ItemDetailMhs(
+                    mahasiswa = detailUiState.detailUiEvent.toMahasiswaEntity(),
+                    modifier = Modifier
+                )
+                Spacer(modifier = Modifier.padding(8.dp))
+                Button(
+                    onClick = {
+                        deleteConfirmationRequired = true
+                    },
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text(text = "Delete")
+                }
+
+                if (deleteConfirmationRequired) {
+                    DeleteConfirmationDialog(
+                        onDeleteConfirm = {
+                            deleteConfirmationRequired = false
+                            onDeleteClick()
+                        },
+                        onDeleteCancel = { deleteConfirmationRequired = false },
+                        modifier = Modifier.padding(8.dp)
+                    )
+                }
+            }
+        }
+
+        detailUiState.isUiEventEmpty -> {
+            Box(
+                modifier = modifier.fillMaxWidth(),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = "Data tidak ditemukan",
+                    modifier = Modifier.padding(16.dp)
+                )
+            }
+        }
+    }
+}
+
+
+
